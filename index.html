@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="description" content="Gestionnaire de collection Pokémon">
+    <meta name="theme-color" content="#9333ea">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Pokémon TCG">
+    <title>Ma Collection Pokémon</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <!-- CSS personnalisé -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="min-h-screen bg-gradient-to-br from-blue-50 to-purple-50">
+    
+    <!-- Header fixe -->
+    <header class="main-header">
+        <div class="max-w-7xl mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <h1 class="text-lg md:text-2xl font-bold text-purple-900 cursor-pointer hover:opacity-80 transition" onclick="showTab('home')">
+                    🎴 Ma Collection Pokémon
+                </h1>
+                
+                <!-- Menu burger (mobile uniquement) -->
+                <div class="burger-menu" onclick="toggleMobileNav()">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="max-w-7xl mx-auto main-content p-4 md:p-6">
+
+        <!-- Navigation Desktop -->
+        <div class="desktop-nav flex gap-2 md:gap-4 mb-4 md:mb-6 items-center flex-wrap justify-center">
+            <button onclick="showTab('home')" class="px-4 md:px-6 py-2 md:py-3 rounded-lg font-semibold transition bg-white text-gray-700 hover:bg-gray-100 text-sm md:text-base">
+                🏠 Accueil
+            </button>
+            
+            <div class="dropdown">
+                <button onclick="toggleDropdown('collection-menu')" class="px-4 md:px-6 py-2 md:py-3 rounded-lg font-semibold transition bg-white text-gray-700 hover:bg-gray-100 text-sm md:text-base">
+                    📦 Collection ▼
+                </button>
+                <div id="collection-menu" class="dropdown-content">
+                    <button onclick="showTab('add-collection')">➕ Ajout produit collection</button>
+                    <button onclick="showTab('my-collection')">📋 Ma collection</button>
+                </div>
+            </div>
+            
+            <div class="dropdown">
+                <button onclick="toggleDropdown('vente-menu')" class="px-4 md:px-6 py-2 md:py-3 rounded-lg font-semibold transition bg-white text-gray-700 hover:bg-gray-100 text-sm md:text-base">
+                    💰 Vente ▼
+                </button>
+                <div id="vente-menu" class="dropdown-content">
+                    <button onclick="showTab('add-sale')">➕ Ajouter une carte</button>
+                    <button onclick="showTab('sale-list')">📋 Liste des produits</button>
+                    <button onclick="showTab('dashboard')">📊 Tableau de bord</button>
+                </div>
+            </div>
+
+            <div class="dropdown">
+                <button onclick="toggleDropdown('stock-menu')" class="px-4 md:px-6 py-2 md:py-3 rounded-lg font-semibold transition bg-white text-gray-700 hover:bg-gray-100 text-sm md:text-base">
+                    📦 Stock ▼
+                </button>
+                <div id="stock-menu" class="dropdown-content">
+                    <button onclick="showTab('stock-add')">➕ Renseignement</button>
+                    <button onclick="showTab('stock-list')">📋 Liste du stock</button>
+                    <button onclick="showTab('stock-lots')">📦 Liste des lots</button>
+                </div>
+            </div>
+
+            <button onclick="showTab('card-search')" class="px-4 md:px-6 py-2 md:py-3 rounded-lg font-semibold transition bg-white text-gray-700 hover:bg-gray-100 text-sm md:text-base">
+                🔍 Recherche
+            </button>
+        </div>
+
+        <!-- Bouton d'installation PWA -->
+        <button id="install-btn" style="display: none;" class="fixed top-20 right-6 bg-purple-600 text-white px-6 py-3 rounded-full shadow-lg hover:bg-purple-700 font-semibold flex items-center gap-2 z-50">
+            📱 Installer l'application
+        </button>
+
+        <!-- Tous les contenus des onglets seront chargés ici par le JavaScript -->
+        <div id="app-content"></div>
+
+    </div>
+
+    <!-- Navigation Mobile (menu burger) -->
+    <div id="mobile-nav" class="mobile-nav" onclick="closeMobileNavOnOverlay(event)">
+        <div class="mobile-nav-content" onclick="event.stopPropagation()">
+            <div class="mobile-nav-header">
+                <h2 class="text-xl font-bold text-purple-900">Menu</h2>
+                <button onclick="toggleMobileNav()" class="mobile-nav-close">×</button>
+            </div>
+            
+            <div onclick="navigateMobile('home')" class="mobile-nav-item">
+                🏠 Accueil
+            </div>
+            
+            <div class="mobile-nav-item">
+                📦 Collection
+                <div class="mobile-nav-submenu">
+                    <div onclick="navigateMobile('add-collection')" class="mobile-nav-subitem">
+                        ➕ Ajout produit collection
+                    </div>
+                    <div onclick="navigateMobile('my-collection')" class="mobile-nav-subitem">
+                        📋 Ma collection
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mobile-nav-item">
+                💰 Vente
+                <div class="mobile-nav-submenu">
+                    <div onclick="navigateMobile('add-sale')" class="mobile-nav-subitem">
+                        ➕ Ajouter une carte
+                    </div>
+                    <div onclick="navigateMobile('sale-list')" class="mobile-nav-subitem">
+                        📋 Liste des produits
+                    </div>
+                    <div onclick="navigateMobile('dashboard')" class="mobile-nav-subitem">
+                        📊 Tableau de bord
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mobile-nav-item">
+                📦 Stock
+                <div class="mobile-nav-submenu">
+                    <div onclick="navigateMobile('stock-add')" class="mobile-nav-subitem">
+                        ➕ Renseignement
+                    </div>
+                    <div onclick="navigateMobile('stock-list')" class="mobile-nav-subitem">
+                        📋 Liste du stock
+                    </div>
+                    <div onclick="navigateMobile('stock-lots')" class="mobile-nav-subitem">
+                        📦 Liste des lots
+                    </div>
+                </div>
+            </div>
+            
+            <div onclick="navigateMobile('card-search')" class="mobile-nav-item">
+                🔍 Recherche de cartes
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer fixe -->
+    <footer class="main-footer">
+        <div class="max-w-7xl mx-auto px-4 py-4">
+            <!-- Liens de navigation -->
+            <div class="footer-links">
+                <a onclick="showTab('home')" class="footer-link">🏠 Accueil</a>
+                <a onclick="showTab('add-collection')" class="footer-link">📦 Collection</a>
+                <a onclick="showTab('add-sale')" class="footer-link">💰 Vente</a>
+                <a onclick="showTab('stock-add')" class="footer-link">📊 Stock</a>
+                <a onclick="showTab('card-search')" class="footer-link">🔍 Recherche</a>
+                <a onclick="showTab('mentions-legales')" class="footer-link">⚖️ Mentions légales</a>
+            </div>
+            
+            <!-- Actions rapides -->
+            <div class="flex justify-center gap-6 items-center my-3">
+                <button onclick="exportData()" class="text-gray-600 hover:text-green-600 transition text-xl" title="Exporter">
+                    📥
+                </button>
+                <label class="text-gray-600 hover:text-blue-600 transition cursor-pointer text-xl" title="Importer">
+                    📤
+                    <input type="file" id="footer-import-file" accept=".json" class="hidden" onchange="importData(event)">
+                </label>
+                <button onclick="toggleDarkMode()" class="text-gray-600 hover:text-yellow-600 transition text-xl" title="Mode sombre" id="footer-dark-toggle">
+                    🌙
+                </button>
+            </div>
+            
+            <!-- Copyright -->
+            <div class="footer-copyright">
+                © 2025 Gardjax - Gestionnaire de Collection Pokémon TCG
+            </div>
+        </div>
+    </footer>
+
+    <!-- Script principal -->
+    <script src="script.js"></script>
+</body>
+</html>
