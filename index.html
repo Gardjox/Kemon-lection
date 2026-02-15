@@ -8,22 +8,19 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="Pokémon TCG">
+    <link rel="manifest" href="manifest.json">
     <title>Ma Collection Pokémon</title>
-    
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Chart.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
-    <!-- CSS personnalisé -->
     <link rel="stylesheet" href="styles.css">
 </head>
 <body class="min-h-screen bg-gradient-to-br from-blue-50 to-purple-50">
     
     <!-- Header fixe -->
     <header class="main-header">
-        <div class="max-w-7xl mx-auto px-4 py-3">
+        <div class="max-w-7xl mx-auto px-4 py-4">
             <div class="flex justify-between items-center">
-                <h1 class="text-lg md:text-2xl font-bold text-purple-900 cursor-pointer hover:opacity-80 transition" onclick="showTab('home')">
+                <h1 class="text-lg md:text-2xl font-bold text-white cursor-pointer hover:opacity-80 transition" onclick="showTab('home')">
                     🎴 Ma Collection Pokémon
                 </h1>
                 
@@ -32,6 +29,75 @@
                     <span></span>
                     <span></span>
                     <span></span>
+                </div>
+            </div>
+        </div>
+
+        <!-- ONGLET: Mentions légales -->
+        <div id="content-mentions-legales" style="display: none;">
+            <div class="bg-white rounded-lg shadow-lg p-6 md:p-8">
+                <h2 class="text-3xl font-bold mb-6 text-purple-900">⚖️ Mentions Légales</h2>
+                
+                <div class="space-y-6 text-gray-700">
+                    <section>
+                        <h3 class="text-xl font-semibold mb-3 text-purple-800">Éditeur de l'application</h3>
+                        <p><strong>Gardjax</strong></p>
+                        <p>Application de gestion de collection Pokémon TCG</p>
+                        <p>Contact : <a href="mailto:contact@gardjax.com" class="text-purple-600 hover:underline">contact@gardjax.com</a></p>
+                    </section>
+
+                    <section>
+                        <h3 class="text-xl font-semibold mb-3 text-purple-800">Hébergement</h3>
+                        <p>Cette application web est hébergée sur GitHub Pages</p>
+                        <p>GitHub, Inc. - 88 Colin P Kelly Jr St, San Francisco, CA 94107, USA</p>
+                    </section>
+
+                    <section>
+                        <h3 class="text-xl font-semibold mb-3 text-purple-800">Propriété intellectuelle</h3>
+                        <p>Pokémon et tous les noms associés sont des marques déposées de Nintendo, Creatures, Game Freak et The Pokémon Company.</p>
+                        <p>Cette application est un projet personnel non officiel et n'est pas affiliée à The Pokémon Company.</p>
+                        <p>Les images de cartes proviennent de l'API officielle Pokémon TCG (pokemontcg.io).</p>
+                    </section>
+
+                    <section>
+                        <h3 class="text-xl font-semibold mb-3 text-purple-800">Données personnelles</h3>
+                        <p><strong>Stockage local :</strong> Cette application stocke toutes vos données localement dans votre navigateur (localStorage). Aucune donnée n'est envoyée vers un serveur externe.</p>
+                        <p><strong>Aucun compte requis :</strong> L'application ne collecte aucune information personnelle identifiable.</p>
+                        <p><strong>Cookies :</strong> Cette application n'utilise pas de cookies de tracking. Seul le localStorage est utilisé pour sauvegarder vos préférences (mode sombre, données de collection).</p>
+                        <p><strong>Export de données :</strong> Vous pouvez exporter et supprimer vos données à tout moment via la fonction Export/Import.</p>
+                    </section>
+
+                    <section>
+                        <h3 class="text-xl font-semibold mb-3 text-purple-800">API et services tiers</h3>
+                        <p>L'application utilise l'API Pokémon TCG (pokemontcg.io) pour la recherche de cartes.</p>
+                        <p>Lors de l'utilisation de cette fonctionnalité, des requêtes sont envoyées à leurs serveurs.</p>
+                        <p>Consultez leur politique de confidentialité : <a href="https://pokemontcg.io" target="_blank" rel="noopener noreferrer" class="text-purple-600 hover:underline">pokemontcg.io</a></p>
+                    </section>
+
+                    <section>
+                        <h3 class="text-xl font-semibold mb-3 text-purple-800">Responsabilité</h3>
+                        <p>Cette application est fournie "telle quelle" sans garantie d'aucune sorte.</p>
+                        <p>L'éditeur ne peut être tenu responsable de la perte de données ou de tout dommage résultant de l'utilisation de cette application.</p>
+                        <p><strong>Important :</strong> Pensez à faire des sauvegardes régulières de vos données via la fonction Export.</p>
+                    </section>
+
+                    <section>
+                        <h3 class="text-xl font-semibold mb-3 text-purple-800">Code source</h3>
+                        <p>Cette application est un projet open-source personnel.</p>
+                        <p>Le code peut être consulté et utilisé conformément à la licence MIT.</p>
+                    </section>
+
+                    <section>
+                        <h3 class="text-xl font-semibold mb-3 text-purple-800">Contact</h3>
+                        <p>Pour toute question concernant ces mentions légales ou l'utilisation de l'application :</p>
+                        <p>📧 Email : <a href="mailto:contact@gardjax.com" class="text-purple-600 hover:underline">contact@gardjax.com</a></p>
+                    </section>
+
+                    <div class="mt-8 pt-6 border-t border-gray-200">
+                        <p class="text-sm text-gray-500 text-center">
+                            Dernière mise à jour : Janvier 2025
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -82,111 +148,799 @@
             </button>
         </div>
 
-        <!-- Bouton d'installation PWA -->
-        <button id="install-btn" style="display: none;" class="fixed top-20 right-6 bg-purple-600 text-white px-6 py-3 rounded-full shadow-lg hover:bg-purple-700 font-semibold flex items-center gap-2 z-50">
+        <!-- Navigation Mobile (menu burger) -->
+        <div id="mobile-nav" class="mobile-nav" onclick="closeMobileNavOnOverlay(event)">
+            <div class="mobile-nav-content" onclick="event.stopPropagation()">
+                <div class="mobile-nav-header">
+                    <h2 class="text-xl font-bold text-purple-900">Menu</h2>
+                    <button onclick="toggleMobileNav()" class="mobile-nav-close">×</button>
+                </div>
+                
+                <div onclick="navigateMobile('home')" class="mobile-nav-item">
+                    🏠 Accueil
+                </div>
+                
+                <div class="mobile-nav-item">
+                    📦 Collection
+                    <div class="mobile-nav-submenu">
+                        <div onclick="navigateMobile('add-collection')" class="mobile-nav-subitem">
+                            ➕ Ajout produit collection
+                        </div>
+                        <div onclick="navigateMobile('my-collection')" class="mobile-nav-subitem">
+                            📋 Ma collection
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mobile-nav-item">
+                    💰 Vente
+                    <div class="mobile-nav-submenu">
+                        <div onclick="navigateMobile('add-sale')" class="mobile-nav-subitem">
+                            ➕ Ajouter une carte
+                        </div>
+                        <div onclick="navigateMobile('sale-list')" class="mobile-nav-subitem">
+                            📋 Liste des produits
+                        </div>
+                        <div onclick="navigateMobile('dashboard')" class="mobile-nav-subitem">
+                            📊 Tableau de bord
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mobile-nav-item">
+                    📦 Stock
+                    <div class="mobile-nav-submenu">
+                        <div onclick="navigateMobile('stock-add')" class="mobile-nav-subitem">
+                            ➕ Renseignement
+                        </div>
+                        <div onclick="navigateMobile('stock-list')" class="mobile-nav-subitem">
+                            📋 Liste du stock
+                        </div>
+                        <div onclick="navigateMobile('stock-lots')" class="mobile-nav-subitem">
+                            📦 Liste des lots
+                        </div>
+                    </div>
+                </div>
+                
+                <div onclick="navigateMobile('card-search')" class="mobile-nav-item">
+                    🔍 Recherche de cartes
+                </div>
+            </div>
+        </div>
+
+        <!-- Bouton d'installation PWA (caché par défaut) -->
+        <button id="install-btn" style="display: none;" class="fixed bottom-6 right-6 bg-purple-600 text-white px-6 py-3 rounded-full shadow-lg hover:bg-purple-700 font-semibold flex items-center gap-2 z-50">
             📱 Installer l'application
         </button>
 
-        <!-- Tous les contenus des onglets seront chargés ici par le JavaScript -->
-        <div id="app-content"></div>
+        <!-- Bouton Mode Sombre -->
+        <button id="dark-mode-toggle" onclick="toggleDarkMode()" class="fixed bottom-6 left-6 bg-gray-800 text-white px-4 py-3 rounded-full shadow-lg hover:bg-gray-700 font-semibold z-50" title="Basculer mode sombre">
+            🌙
+        </button>
 
-    </div>
+        <!-- ONGLET: Page d'accueil -->
+        <div id="content-home">
+            <div class="space-y-8">
+                <!-- Hero Section -->
+                <div class="bg-gradient-to-r from-purple-600 to-blue-600 rounded-2xl shadow-2xl p-8 md:p-12 text-white fade-in">
+                    <div class="text-center">
+                        <h2 class="text-5xl md:text-6xl font-bold mb-4">✨ Bienvenue Dresseur ! ✨</h2>
+                        <p class="text-xl md:text-2xl mb-6 opacity-90">Ta collection Pokémon n'attend que toi</p>
+                        <div class="flex justify-center gap-4 flex-wrap">
+                            <button onclick="showTab('add-collection')" class="bg-white text-purple-600 px-8 py-3 rounded-lg font-bold hover:bg-gray-100 transition transform hover:scale-105">
+                                🎴 Commencer ma collection
+                            </button>
+                            <button onclick="showTab('card-search')" class="bg-purple-800 text-white px-8 py-3 rounded-lg font-bold hover:bg-purple-900 transition transform hover:scale-105">
+                                🔍 Rechercher des cartes
+                            </button>
+                        </div>
+                    </div>
+                </div>
 
-    <!-- Navigation Mobile (menu burger) -->
-    <div id="mobile-nav" class="mobile-nav" onclick="closeMobileNavOnOverlay(event)">
-        <div class="mobile-nav-content" onclick="event.stopPropagation()">
-            <div class="mobile-nav-header">
-                <h2 class="text-xl font-bold text-purple-900">Menu</h2>
-                <button onclick="toggleMobileNav()" class="mobile-nav-close">×</button>
-            </div>
-            
-            <div onclick="navigateMobile('home')" class="mobile-nav-item">
-                🏠 Accueil
-            </div>
-            
-            <div class="mobile-nav-item">
-                📦 Collection
-                <div class="mobile-nav-submenu">
-                    <div onclick="navigateMobile('add-collection')" class="mobile-nav-subitem">
-                        ➕ Ajout produit collection
+                <!-- Pourquoi collectionner ? -->
+                <div class="grid md:grid-cols-2 gap-6 fade-in-delay">
+                    <div class="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition">
+                        <div class="text-4xl mb-4 text-center">🎯</div>
+                        <h3 class="text-2xl font-bold mb-3 text-purple-900 text-center">Passion & Nostalgie</h3>
+                        <p class="text-gray-700 leading-relaxed">
+                            Depuis 1996, Pokémon TCG captive des millions de collectionneurs à travers le monde. Chaque carte raconte une histoire, 
+                            rappelle des souvenirs d'enfance et crée de nouvelles aventures. Que tu recherches un Dracaufeu brillant ou que tu complètes 
+                            une extension entière, chaque découverte est une victoire !
+                        </p>
                     </div>
-                    <div onclick="navigateMobile('my-collection')" class="mobile-nav-subitem">
-                        📋 Ma collection
+
+                    <div class="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition">
+                        <div class="text-4xl mb-4 text-center">💎</div>
+                        <h3 class="text-2xl font-bold mb-3 text-blue-900 text-center">Valeur & Investissement</h3>
+                        <p class="text-gray-700 leading-relaxed">
+                            Les cartes Pokémon ne sont pas qu'un passe-temps, c'est aussi un investissement intelligent. Certaines cartes rares 
+                            prennent énormément de valeur avec le temps. Avec cette application, suis l'évolution de ta collection, compare les prix 
+                            d'achat et de revente, et découvre tes meilleures pépites !
+                        </p>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition">
+                        <div class="text-4xl mb-4 text-center">📊</div>
+                        <h3 class="text-2xl font-bold mb-3 text-green-900 text-center">Organisation Parfaite</h3>
+                        <p class="text-gray-700 leading-relaxed">
+                            Fini les classeurs désorganisés ! Gère ta collection avec précision : ajoute des photos, note l'état de chaque carte, 
+                            organise par extension (EV, EB, SL...), crée des lots, et suis ton stock en temps réel. Tout est à portée de main, 
+                            sur ton téléphone ou ordinateur.
+                        </p>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition">
+                        <div class="text-4xl mb-4 text-center">🚀</div>
+                        <h3 class="text-2xl font-bold mb-3 text-orange-900 text-center">Fonctionnalités Puissantes</h3>
+                        <p class="text-gray-700 leading-relaxed">
+                            Recherche de cartes via API officielle, mode sombre pour les yeux sensibles, export/import de données, 
+                            gestion de ventes, tableaux de bord statistiques, système de lots pour achats groupés... Cette app a tout ce qu'il faut 
+                            pour les collectionneurs sérieux !
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Call to action -->
+                <div class="bg-gradient-to-r from-yellow-400 to-orange-500 rounded-2xl shadow-2xl p-8 text-center fade-in-delay">
+                    <h3 class="text-3xl font-bold mb-4 text-white">🎉 Prêt à devenir le meilleur collectionneur ? 🎉</h3>
+                    <p class="text-xl text-white mb-6 opacity-90">
+                        Rejoins l'aventure et transforme ta passion en collection organisée et valorisée !
+                    </p>
+                    <div class="flex justify-center gap-4 flex-wrap">
+                        <button onclick="showTab('stock-add')" class="bg-white text-orange-600 px-8 py-3 rounded-lg font-bold hover:bg-gray-100 transition transform hover:scale-105">
+                            📦 Gérer mon stock
+                        </button>
+                        <button onclick="showTab('stock-lots')" class="bg-orange-700 text-white px-8 py-3 rounded-lg font-bold hover:bg-orange-800 transition transform hover:scale-105">
+                            🎁 Créer des lots
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Fun facts -->
+                <div class="bg-white rounded-xl shadow-lg p-6">
+                    <h3 class="text-2xl font-bold mb-4 text-purple-900 text-center">💡 Le savais-tu ?</h3>
+                    <div class="grid md:grid-cols-3 gap-4 text-center">
+                        <div class="p-4 bg-purple-50 rounded-lg">
+                            <div class="text-3xl mb-2">🏆</div>
+                            <p class="font-semibold text-purple-900">Une carte Pikachu Illustrator</p>
+                            <p class="text-sm text-gray-600">s'est vendue 5,3 millions de dollars en 2021 !</p>
+                        </div>
+                        <div class="p-4 bg-blue-50 rounded-lg">
+                            <div class="text-3xl mb-2">🌍</div>
+                            <p class="font-semibold text-blue-900">Plus de 43 milliards</p>
+                            <p class="text-sm text-gray-600">de cartes Pokémon ont été produites dans le monde</p>
+                        </div>
+                        <div class="p-4 bg-green-50 rounded-lg">
+                            <div class="text-3xl mb-2">📅</div>
+                            <p class="font-semibold text-green-900">28 ans d'histoire</p>
+                            <p class="text-sm text-gray-600">depuis le lancement du TCG en octobre 1996</p>
+                        </div>
                     </div>
                 </div>
             </div>
-            
-            <div class="mobile-nav-item">
-                💰 Vente
-                <div class="mobile-nav-submenu">
-                    <div onclick="navigateMobile('add-sale')" class="mobile-nav-subitem">
-                        ➕ Ajouter une carte
+        </div>
+
+        <!-- ONGLET: Stock - Renseignement -->
+        <div id="content-stock-add" style="display: none;">
+            <div class="bg-white rounded-lg shadow-lg p-6 mb-6">
+                <h2 class="text-xl font-semibold mb-4 text-gray-800">Ajouter au stock</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <select id="stock-objet" class="border rounded px-3 py-2">
+                        <option value="Carte">Carte</option>
+                        <option value="Carte gradée">Carte gradée</option>
+                        <option value="Scellé">Scellé</option>
+                        <option value="Autre">Autre</option>
+                    </select>
+                    
+                    <div class="border rounded px-3 py-2 flex items-center gap-2">
+                        <label class="cursor-pointer text-gray-600 hover:text-purple-600 flex items-center gap-2">
+                            📷 Photo
+                            <input type="file" id="stock-photo" accept=".jpg,.jpeg,.png,.webp" class="hidden" onchange="handleStockPhoto(event)">
+                        </label>
+                        <span id="stock-photo-status"></span>
                     </div>
-                    <div onclick="navigateMobile('sale-list')" class="mobile-nav-subitem">
-                        📋 Liste des produits
+
+                    <select id="stock-collection" class="border rounded px-3 py-2">
+                        <option value="EV">EV - Écarlate et Violet</option>
+                        <option value="EB">EB - Épée et Bouclier</option>
+                        <option value="SL">SL - Soleil et Lune</option>
+                        <option value="XY">XY</option>
+                        <option value="NB">NB - Noir et Blanc</option>
+                        <option value="DP">DP - Diamant et Perle</option>
+                        <option value="EX">EX</option>
+                        <option value="WIZARD">WIZARD</option>
+                    </select>
+
+                    <input type="datetime-local" id="stock-date" class="border rounded px-3 py-2">
+
+                    <select id="stock-etat" class="border rounded px-3 py-2">
+                        <option value="Neuf">Neuf</option>
+                        <option value="Excellent">Excellent</option>
+                        <option value="Bon">Bon</option>
+                        <option value="Moyen">Moyen</option>
+                        <option value="Abîmé">Abîmé</option>
+                    </select>
+
+                    <input type="text" id="stock-details-etat" placeholder="Détails de l'état" class="border rounded px-3 py-2">
+
+                    <select id="stock-achat-lieu" class="border rounded px-3 py-2">
+                        <option value="Boutique">Boutique</option>
+                        <option value="Vinted">Site - Vinted</option>
+                        <option value="Ebay">Site - Ebay</option>
+                        <option value="Cardmarket">Site - Cardmarket</option>
+                        <option value="Enchère">Enchère</option>
+                        <option value="Autre">Autre</option>
+                    </select>
+
+                    <input type="number" id="stock-prix-achat" step="0.01" placeholder="Prix d'achat (€)" class="border rounded px-3 py-2">
+
+                    <input type="number" id="stock-prix-revente" step="0.01" placeholder="Prix de revente voulu (€)" class="border rounded px-3 py-2">
+
+                    <select id="stock-etat-actuel" class="border rounded px-3 py-2">
+                        <option value="Stock">Stock</option>
+                        <option value="En vente">En vente</option>
+                        <option value="Vendu">Vendu</option>
+                    </select>
+
+                    <select id="stock-lot" class="border rounded px-3 py-2">
+                        <option value="">Aucun lot</option>
+                        <!-- Les lots seront ajoutés dynamiquement -->
+                    </select>
+
+                    <input type="text" id="stock-details" placeholder="Détails (commentaire)" class="border rounded px-3 py-2 md:col-span-3">
+                </div>
+                <button onclick="addStockItem()" class="mt-4 bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700 flex items-center gap-2">
+                    <span id="stock-submit-btn-text">➕ Ajouter au stock</span>
+                </button>
+                <button onclick="cancelStockEdit()" id="stock-cancel-btn" style="display: none;" class="mt-4 ml-2 bg-gray-500 text-white px-6 py-2 rounded-lg hover:bg-gray-600">
+                    ❌ Annuler
+                </button>
+            </div>
+            <div id="stock-photo-preview" class="bg-white rounded-lg shadow-lg p-4" style="display: none;">
+                <h3 class="text-lg font-semibold mb-2">Aperçu photo</h3>
+                <img id="stock-photo-img" class="max-w-xs rounded cursor-pointer" onclick="zoomStockPhoto()" alt="Photo stock">
+            </div>
+        </div>
+
+        <!-- ONGLET: Stock - Liste -->
+        <div id="content-stock-list" style="display: none;">
+            <div class="bg-white rounded-lg shadow-lg p-6 mb-6">
+                <input type="text" id="stock-search" placeholder="🔍 Rechercher dans le stock..." class="border rounded px-10 py-2 w-full" oninput="filterStockItems()">
+            </div>
+
+            <!-- Tableau: En Stock -->
+            <div class="bg-white rounded-lg shadow-lg overflow-hidden mb-6">
+                <div class="bg-blue-600 text-white px-4 py-2 font-semibold">📦 En stock</div>
+                <div class="overflow-x-auto">
+                    <table class="w-full">
+                        <thead class="bg-blue-100">
+                            <tr>
+                                <th class="px-4 py-3 text-left">Photo</th>
+                                <th class="px-4 py-3 text-left">Objet</th>
+                                <th class="px-4 py-3 text-left">Collection</th>
+                                <th class="px-4 py-3 text-left">Date achat</th>
+                                <th class="px-4 py-3 text-left">État</th>
+                                <th class="px-4 py-3 text-left">Où acheté</th>
+                                <th class="px-4 py-3 text-left">Lot</th>
+                                <th class="px-4 py-3 text-left">Prix achat</th>
+                                <th class="px-4 py-3 text-left">Prix revente</th>
+                                <th class="px-4 py-3 text-left">+/- Value</th>
+                                <th class="px-4 py-3 text-left">Statut</th>
+                                <th class="px-4 py-3 text-left">Détails</th>
+                                <th class="px-4 py-3 text-center">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="stock-table-stock"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Tableau: En Vente -->
+            <div class="bg-white rounded-lg shadow-lg overflow-hidden mb-6">
+                <div class="bg-orange-600 text-white px-4 py-2 font-semibold">🔥 En vente</div>
+                <div class="overflow-x-auto">
+                    <table class="w-full">
+                        <thead class="bg-orange-100">
+                            <tr>
+                                <th class="px-4 py-3 text-left">Photo</th>
+                                <th class="px-4 py-3 text-left">Objet</th>
+                                <th class="px-4 py-3 text-left">Collection</th>
+                                <th class="px-4 py-3 text-left">Date achat</th>
+                                <th class="px-4 py-3 text-left">État</th>
+                                <th class="px-4 py-3 text-left">Où acheté</th>
+                                <th class="px-4 py-3 text-left">Lot</th>
+                                <th class="px-4 py-3 text-left">Prix achat</th>
+                                <th class="px-4 py-3 text-left">Prix revente</th>
+                                <th class="px-4 py-3 text-left">+/- Value</th>
+                                <th class="px-4 py-3 text-left">Statut</th>
+                                <th class="px-4 py-3 text-left">Détails</th>
+                                <th class="px-4 py-3 text-center">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="stock-table-vente"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Tableau: Vendus -->
+            <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                <div class="bg-green-600 text-white px-4 py-2 font-semibold">✅ Vendus</div>
+                <div class="overflow-x-auto">
+                    <table class="w-full">
+                        <thead class="bg-green-100">
+                            <tr>
+                                <th class="px-4 py-3 text-left">Photo</th>
+                                <th class="px-4 py-3 text-left">Objet</th>
+                                <th class="px-4 py-3 text-left">Collection</th>
+                                <th class="px-4 py-3 text-left">Date achat</th>
+                                <th class="px-4 py-3 text-left">État</th>
+                                <th class="px-4 py-3 text-left">Où acheté</th>
+                                <th class="px-4 py-3 text-left">Lot</th>
+                                <th class="px-4 py-3 text-left">Prix achat</th>
+                                <th class="px-4 py-3 text-left">Prix revente</th>
+                                <th class="px-4 py-3 text-left">+/- Value</th>
+                                <th class="px-4 py-3 text-left">Statut</th>
+                                <th class="px-4 py-3 text-left">Détails</th>
+                                <th class="px-4 py-3 text-center">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="stock-table-vendu"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- ONGLET: Stock - Liste des lots -->
+        <div id="content-stock-lots" style="display: none;">
+            <div class="mb-6">
+                <button onclick="openCreateLotModal()" class="bg-purple-600 text-white px-6 py-3 rounded-lg hover:bg-purple-700 font-semibold">
+                    ➕ Créer un lot
+                </button>
+            </div>
+
+            <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                <div class="overflow-x-auto">
+                    <table class="w-full">
+                        <thead class="bg-purple-600 text-white">
+                            <tr>
+                                <th class="px-4 py-3 text-left">Photo</th>
+                                <th class="px-4 py-3 text-left">Nom du lot</th>
+                                <th class="px-4 py-3 text-left">Date et heure</th>
+                                <th class="px-4 py-3 text-left">Prix d'achat</th>
+                                <th class="px-4 py-3 text-left">Nb cartes</th>
+                                <th class="px-4 py-3 text-left">Détails</th>
+                                <th class="px-4 py-3 text-center">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="lots-table"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Zoom Photo -->
+        <div id="photo-zoom-modal" style="display: none;" class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50" onclick="closePhotoZoom()">
+            <img id="photo-zoom-img" class="max-w-5xl max-h-screen rounded" alt="Photo zoomée">
+        </div>
+
+        <!-- Modal Créer un lot -->
+        <div id="create-lot-modal" style="display: none;" class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50" onclick="closeCreateLotModal(event)">
+            <div class="bg-white rounded-lg p-6 max-w-2xl w-full" onclick="event.stopPropagation()">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-2xl font-bold">Créer un lot</h2>
+                    <button onclick="closeCreateLotModal()" class="text-gray-500 hover:text-gray-700 text-2xl">×</button>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <input type="text" id="lot-nom" placeholder="Nom du lot" class="border rounded px-3 py-2">
+                    <input type="datetime-local" id="lot-date" class="border rounded px-3 py-2">
+                    <input type="number" id="lot-prix" step="0.01" placeholder="Prix d'achat du lot (€)" class="border rounded px-3 py-2">
+                    <input type="number" id="lot-nb-cartes" placeholder="Nombre de cartes" class="border rounded px-3 py-2">
+                    <div class="border rounded px-3 py-2 flex items-center gap-2 md:col-span-2">
+                        <label class="cursor-pointer text-gray-600 hover:text-purple-600 flex items-center gap-2">
+                            📷 Photo (optionnel)
+                            <input type="file" id="lot-photo" accept=".jpg,.jpeg,.png,.webp" class="hidden" onchange="handleLotPhoto(event)">
+                        </label>
+                        <span id="lot-photo-status"></span>
                     </div>
-                    <div onclick="navigateMobile('dashboard')" class="mobile-nav-subitem">
-                        📊 Tableau de bord
+                    <textarea id="lot-details" placeholder="Détails (défauts, commentaires...)" class="border rounded px-3 py-2 md:col-span-2" rows="3"></textarea>
+                </div>
+                
+                <div class="flex gap-2 mt-4">
+                    <button onclick="createLot()" class="bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700">
+                        ➕ Créer le lot
+                    </button>
+                    <button onclick="closeCreateLotModal()" class="bg-gray-500 text-white px-6 py-2 rounded-lg hover:bg-gray-600">
+                        Annuler
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Modifier le lot (ajouter des cartes) -->
+        <div id="modify-lot-modal" style="display: none;" class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50" onclick="closeModifyLotModal(event)">
+            <div class="bg-white rounded-lg p-6 max-w-5xl w-full max-h-[90vh] overflow-y-auto" onclick="event.stopPropagation()">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-2xl font-bold" id="modify-lot-title">Modifier le lot</h2>
+                    <button onclick="closeModifyLotModal()" class="text-gray-500 hover:text-gray-700 text-2xl">×</button>
+                </div>
+                
+                <!-- Bouton ajouter une carte -->
+                <div class="mb-6">
+                    <button onclick="openAddCardToLotModal()" class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700">
+                        ➕ Ajouter une carte au lot
+                    </button>
+                </div>
+
+                <!-- Liste des cartes du lot -->
+                <div class="bg-gray-50 rounded-lg p-4">
+                    <h3 class="text-lg font-semibold mb-3">Cartes dans ce lot</h3>
+                    <div id="lot-cards-list" class="space-y-3">
+                        <!-- Les cartes s'afficheront ici -->
+                    </div>
+                </div>
+
+                <div class="flex gap-2 mt-6">
+                    <button onclick="closeModifyLotModal()" class="bg-gray-500 text-white px-6 py-2 rounded-lg hover:bg-gray-600">
+                        Fermer
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Ajouter une carte au lot -->
+        <div id="add-card-lot-modal" style="display: none;" class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50" onclick="closeAddCardToLotModal(event)">
+            <div class="bg-white rounded-lg p-6 max-w-3xl w-full max-h-[90vh] overflow-y-auto" onclick="event.stopPropagation()">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-2xl font-bold">Ajouter une carte au lot</h2>
+                    <button onclick="closeAddCardToLotModal()" class="text-gray-500 hover:text-gray-700 text-2xl">×</button>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="border rounded px-3 py-2 flex items-center gap-2 md:col-span-2">
+                        <label class="cursor-pointer text-gray-600 hover:text-purple-600 flex items-center gap-2">
+                            📷 Photo de la carte
+                            <input type="file" id="card-lot-photo" accept=".jpg,.jpeg,.png,.webp" class="hidden" onchange="handleCardLotPhoto(event)">
+                        </label>
+                        <span id="card-lot-photo-status"></span>
+                    </div>
+                    
+                    <input type="text" id="card-lot-nom" placeholder="Nom de la carte" class="border rounded px-3 py-2 md:col-span-2">
+                    
+                    <select id="card-lot-type" class="border rounded px-3 py-2">
+                        <option value="Basique">Basique</option>
+                        <option value="Reverse">Reverse</option>
+                        <option value="Holo">Holo</option>
+                        <option value="Holo Reverse">Holo Reverse</option>
+                    </select>
+                    
+                    <input type="number" id="card-lot-quantite" min="1" value="1" placeholder="Quantité" class="border rounded px-3 py-2">
+                    
+                    <select id="card-lot-qualite" class="border rounded px-3 py-2">
+                        <option value="Mint">Mint</option>
+                        <option value="Near Mint">Near Mint</option>
+                        <option value="Excellent +">Excellent +</option>
+                        <option value="Excellent">Excellent</option>
+                        <option value="Très bon">Très bon</option>
+                        <option value="Bon">Bon</option>
+                        <option value="Played">Played</option>
+                        <option value="Mauvais">Mauvais</option>
+                    </select>
+                    
+                    <input type="number" id="card-lot-prix-achat" step="0.01" placeholder="Prix d'achat potentiel (calculé auto)" class="border rounded px-3 py-2 bg-gray-100" readonly>
+                    
+                    <input type="number" id="card-lot-prix-revente" step="0.01" placeholder="Prix de revente potentiel (€)" class="border rounded px-3 py-2 md:col-span-2">
+                    
+                    <textarea id="card-lot-description-etat" placeholder="Description de l'état de la carte (rayures, défauts...)" class="border rounded px-3 py-2 md:col-span-2" rows="3"></textarea>
+                </div>
+                
+                <div class="flex gap-2 mt-4">
+                    <button onclick="addCardToLot()" class="bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700">
+                        ➕ Ajouter
+                    </button>
+                    <button onclick="closeAddCardToLotModal()" class="bg-gray-500 text-white px-6 py-2 rounded-lg hover:bg-gray-600">
+                        Annuler
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ONGLET: Recherche de cartes (API) -->
+        <div id="content-card-search" style="display: none;">
+            <div class="bg-white rounded-lg shadow-lg p-6 mb-6">
+                <h2 class="text-xl font-semibold mb-4 text-gray-800">🔍 Recherche de cartes Pokémon</h2>
+                <div class="flex flex-col md:flex-row gap-4">
+                    <input type="text" id="api-search" placeholder="Rechercher une carte (ex: Dracaufeu, Pikachu...)" class="border rounded px-4 py-2 flex-1">
+                    <select id="result-limit" class="border rounded px-4 py-2">
+                        <option value="10">10 résultats</option>
+                        <option value="25" selected>25 résultats</option>
+                        <option value="50">50 résultats</option>
+                        <option value="100">100 résultats</option>
+                        <option value="250">Tous (250 max)</option>
+                    </select>
+                    <button onclick="searchCards()" class="bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700 font-semibold">
+                        Rechercher
+                    </button>
+                </div>
+                <div class="mt-4 text-sm text-gray-600">
+                    💡 Astuce : Recherchez en français ! (Dracaufeu, Tortank, Pikachu...)
+                </div>
+            </div>
+
+            <div id="search-info" class="mb-4 text-center text-gray-600" style="display: none;"></div>
+
+            <div id="search-results" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+                <!-- Les résultats s'afficheront ici -->
+            </div>
+
+            <div id="search-loading" style="display: none;" class="text-center py-8">
+                <div class="text-2xl mb-2">⏳ Recherche en cours...</div>
+                <div class="text-sm text-gray-500">Récupération des cartes...</div>
+            </div>
+        </div>
+
+        <!-- ONGLET: Ajout produit collection -->
+        <div id="content-add-collection">
+            <div class="bg-white rounded-lg shadow-lg p-6 mb-6">
+                <h2 class="text-xl font-semibold mb-4 text-gray-800">Ajouter un produit à la collection</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <select id="collection" class="border rounded px-3 py-2">
+                        <option value="Carte à l'unité">Carte à l'unité</option>
+                        <option value="Carte gradée">Carte gradée</option>
+                        <option value="Booster">Booster</option>
+                        <option value="Bundle">Bundle</option>
+                        <option value="Tripack">Tripack</option>
+                        <option value="Duopack">Duopack</option>
+                        <option value="ETB">ETB</option>
+                        <option value="SPC">SPC</option>
+                        <option value="Autre">Autre</option>
+                    </select>
+                    <select id="ere" class="border rounded px-3 py-2">
+                        <option value="EV">EV</option>
+                        <option value="EB">EB</option>
+                        <option value="SL">SL</option>
+                        <option value="XY">XY</option>
+                        <option value="NB">NB</option>
+                        <option value="DP">DP</option>
+                        <option value="EX">EX</option>
+                        <option value="WIZARD">WIZARD</option>
+                    </select>
+                    <input type="text" id="nom" placeholder="Nom du produit" class="border rounded px-3 py-2">
+                    <input type="number" id="prix" step="0.01" placeholder="Prix d'achat (€)" class="border rounded px-3 py-2">
+                    <input type="number" id="prix-revente" step="0.01" placeholder="Prix de revente (€)" class="border rounded px-3 py-2">
+                    <select id="etat" class="border rounded px-3 py-2">
+                        <option value="Neuf">Neuf</option>
+                        <option value="Excellent">Excellent</option>
+                        <option value="Bon">Bon</option>
+                        <option value="Moyen">Moyen</option>
+                        <option value="Abîmé">Abîmé</option>
+                    </select>
+                    <input type="text" id="lieu" placeholder="Lieu d'achat" class="border rounded px-3 py-2">
+                    <input type="text" id="details" placeholder="Détails/Commentaires" class="border rounded px-3 py-2">
+                    <div class="border rounded px-3 py-2 flex items-center gap-2">
+                        <label class="cursor-pointer text-gray-600 hover:text-purple-600 flex items-center gap-2">
+                            📷 Image
+                            <input type="file" id="image" accept=".jpg,.jpeg,.png,.webp" class="hidden" onchange="handleImage(event)">
+                        </label>
+                        <span id="image-status"></span>
+                    </div>
+                </div>
+                <button onclick="addProduct()" class="mt-4 bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700 flex items-center gap-2">
+                    <span id="submit-btn-text">➕ Ajouter</span>
+                </button>
+                <button onclick="cancelEdit()" id="cancel-btn" style="display: none;" class="mt-4 ml-2 bg-gray-500 text-white px-6 py-2 rounded-lg hover:bg-gray-600">
+                    ❌ Annuler
+                </button>
+            </div>
+
+            <div class="bg-white rounded-lg shadow-lg p-6">
+                <h2 class="text-xl font-semibold mb-4 text-gray-800">📊 Résumé</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <div class="bg-purple-50 p-4 rounded-lg">
+                        <p class="text-gray-600 text-sm">Total produits</p>
+                        <p id="total-products" class="text-3xl font-bold text-purple-700">0</p>
+                    </div>
+                    <div class="bg-blue-50 p-4 rounded-lg">
+                        <p class="text-gray-600 text-sm">Valeur achat</p>
+                        <p id="total-value" class="text-3xl font-bold text-blue-700">0.00€</p>
+                    </div>
+                    <div class="bg-green-50 p-4 rounded-lg">
+                        <p class="text-gray-600 text-sm">Valeur revente</p>
+                        <p id="total-resale" class="text-3xl font-bold text-green-700">0.00€</p>
+                    </div>
+                    <div class="bg-orange-50 p-4 rounded-lg">
+                        <p class="text-gray-600 text-sm">+/- Value globale</p>
+                        <p id="global-percentage" class="text-3xl font-bold text-gray-700">-</p>
                     </div>
                 </div>
             </div>
-            
-            <div class="mobile-nav-item">
-                📦 Stock
-                <div class="mobile-nav-submenu">
-                    <div onclick="navigateMobile('stock-add')" class="mobile-nav-subitem">
-                        ➕ Renseignement
+        </div>
+
+        <!-- ONGLET: Ma collection -->
+        <div id="content-my-collection" style="display: none;">
+            <div class="bg-white rounded-lg shadow-lg p-4 md:p-6 mb-6">
+                <div class="flex flex-col md:flex-row md:justify-between md:items-center gap-4 mb-4">
+                    <h2 class="text-xl font-semibold text-gray-800">Filtres</h2>
+                    <div class="flex gap-3">
+                        <button onclick="exportData()" class="px-3 md:px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 font-semibold text-sm">
+                            📥 Exporter
+                        </button>
+                        <label class="px-3 md:px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-semibold cursor-pointer text-sm">
+                            📤 Importer
+                            <input type="file" id="import-file" accept=".json" class="hidden" onchange="importData(event)">
+                        </label>
                     </div>
-                    <div onclick="navigateMobile('stock-list')" class="mobile-nav-subitem">
-                        📋 Liste du stock
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-5 gap-3">
+                    <div class="relative">
+                        <input type="text" id="search" placeholder="🔍 Rechercher..." class="border rounded px-3 py-2 w-full text-sm" oninput="filterProducts()">
                     </div>
-                    <div onclick="navigateMobile('stock-lots')" class="mobile-nav-subitem">
-                        📦 Liste des lots
+                    <select id="filter-collection" class="border rounded px-3 py-2 text-sm" onchange="filterProducts()">
+                        <option value="">Tous les types</option>
+                        <option value="Carte à l'unité">Carte à l'unité</option>
+                        <option value="Carte gradée">Carte gradée</option>
+                        <option value="Booster">Booster</option>
+                        <option value="Bundle">Bundle</option>
+                        <option value="Tripack">Tripack</option>
+                        <option value="Duopack">Duopack</option>
+                        <option value="ETB">ETB</option>
+                        <option value="SPC">SPC</option>
+                        <option value="Autre">Autre</option>
+                    </select>
+                    <select id="filter-ere" class="border rounded px-3 py-2 text-sm" onchange="filterProducts()">
+                        <option value="">Toutes les ères</option>
+                        <option value="EV">EV</option>
+                        <option value="EB">EB</option>
+                        <option value="SL">SL</option>
+                        <option value="XY">XY</option>
+                        <option value="NB">NB</option>
+                        <option value="DP">DP</option>
+                        <option value="EX">EX</option>
+                        <option value="WIZARD">WIZARD</option>
+                    </select>
+                    <select id="filter-etat" class="border rounded px-3 py-2 text-sm" onchange="filterProducts()">
+                        <option value="">Tous les états</option>
+                        <option value="Neuf">Neuf</option>
+                        <option value="Excellent">Excellent</option>
+                        <option value="Bon">Bon</option>
+                        <option value="Moyen">Moyen</option>
+                        <option value="Abîmé">Abîmé</option>
+                    </select>
+                    <select id="sort" class="border rounded px-3 py-2 text-sm" onchange="filterProducts()">
+                        <option value="">Trier par...</option>
+                        <option value="nom">Nom A-Z</option>
+                        <option value="collection">Collection A-Z</option>
+                        <option value="prix-asc">Prix croissant</option>
+                        <option value="prix-desc">Prix décroissant</option>
+                    </select>
+                </div>
+                <div class="mt-4 text-base md:text-lg font-semibold text-purple-800" id="filter-summary">
+                    0 produit(s) • Valeur totale: 0.00€
+                </div>
+            </div>
+
+            <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                <div class="text-sm text-gray-600 px-4 py-2 bg-purple-50 md:hidden">
+                    💡 Faites glisser le tableau avec votre doigt →
+                </div>
+                <div class="overflow-x-auto relative touch-pan-x" id="collection-table-scroll">
+                    <table class="w-full">
+                        <thead class="bg-purple-600 text-white">
+                            <tr>
+                                <th class="px-4 py-3 text-left sticky left-0 bg-purple-600 z-10">Image</th>
+                                <th class="px-4 py-3 text-left">Type</th>
+                                <th class="px-4 py-3 text-left">Ère</th>
+                                <th class="px-4 py-3 text-left">Nom</th>
+                                <th class="px-4 py-3 text-left">Prix achat</th>
+                                <th class="px-4 py-3 text-left">Prix revente</th>
+                                <th class="px-4 py-3 text-left">+/- Value</th>
+                                <th class="px-4 py-3 text-left">État</th>
+                                <th class="px-4 py-3 text-left">Lieu d'achat</th>
+                                <th class="px-4 py-3 text-left">Détails</th>
+                                <th class="px-4 py-3 text-center sticky right-0 bg-purple-600 z-10">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="product-table"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- ONGLET: Ajouter une carte (Vente) -->
+        <div id="content-add-sale" style="display: none;">
+            <div class="bg-white rounded-lg shadow-lg p-6 mb-6">
+                <h2 class="text-xl font-semibold mb-4 text-gray-800">Ajouter une carte à vendre</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <input type="text" id="sale-nom" placeholder="Nom de la carte" class="border rounded px-3 py-2">
+                    <select id="sale-etat" class="border rounded px-3 py-2">
+                        <option value="Neuf">Neuf</option>
+                        <option value="Excellent">Excellent</option>
+                        <option value="Bon">Bon</option>
+                        <option value="Moyen">Moyen</option>
+                        <option value="Abîmé">Abîmé</option>
+                    </select>
+                    <input type="number" id="sale-prix-achat" step="0.01" placeholder="Prix d'achat (€)" class="border rounded px-3 py-2">
+                    <select id="sale-statut" class="border rounded px-3 py-2">
+                        <option value="En vente">En vente</option>
+                        <option value="Vendu">Vendu</option>
+                        <option value="Pas listé">Pas listé</option>
+                    </select>
+                    <input type="number" id="sale-prix-potentiel" step="0.01" placeholder="Prix potentiel de revente (€)" class="border rounded px-3 py-2">
+                    <input type="number" id="sale-prix-revente" step="0.01" placeholder="Prix de revente (€)" class="border rounded px-3 py-2">
+                    <input type="text" id="sale-details" placeholder="Détails" class="border rounded px-3 py-2 md:col-span-3">
+                    <div class="border rounded px-3 py-2 flex items-center gap-2 md:col-span-3">
+                        <label class="cursor-pointer text-gray-600 hover:text-purple-600 flex items-center gap-2">
+                            📷 Images (max 4)
+                            <input type="file" id="sale-images" accept=".jpg,.jpeg,.png,.webp" multiple class="hidden" onchange="handleSaleImages(event)">
+                        </label>
+                        <span id="sale-images-status"></span>
+                    </div>
+                    <div id="sale-images-preview" class="md:col-span-3 flex gap-2 flex-wrap"></div>
+                </div>
+                <button onclick="addSaleProduct()" class="mt-4 bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700 flex items-center gap-2">
+                    <span id="sale-submit-btn-text">➕ Ajouter</span>
+                </button>
+                <button onclick="cancelSaleEdit()" id="sale-cancel-btn" style="display: none;" class="mt-4 ml-2 bg-gray-500 text-white px-6 py-2 rounded-lg hover:bg-gray-600">
+                    ❌ Annuler
+                </button>
+            </div>
+        </div>
+
+        <!-- ONGLET: Liste des produits (Vente) -->
+        <div id="content-sale-list" style="display: none;">
+            <div class="bg-white rounded-lg shadow-lg p-6 mb-6">
+                <input type="text" id="sale-search" placeholder="🔍 Rechercher..." class="border rounded px-10 py-2 w-full" oninput="filterSaleProducts()">
+            </div>
+
+            <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                <div class="overflow-x-auto">
+                    <table class="w-full">
+                        <thead class="bg-purple-600 text-white">
+                            <tr>
+                                <th class="px-4 py-3 text-left">Images</th>
+                                <th class="px-4 py-3 text-left">Nom</th>
+                                <th class="px-4 py-3 text-left">État</th>
+                                <th class="px-4 py-3 text-left">Prix achat</th>
+                                <th class="px-4 py-3 text-left">Prix potentiel</th>
+                                <th class="px-4 py-3 text-left">Prix revente</th>
+                                <th class="px-4 py-3 text-left">Statut</th>
+                                <th class="px-4 py-3 text-left">Détails</th>
+                                <th class="px-4 py-3 text-center">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="sale-table"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- ONGLET: Tableau de bord (Vente) -->
+        <div id="content-dashboard" style="display: none;">
+            <div class="bg-white rounded-lg shadow-lg p-6 mb-6">
+                <h2 class="text-xl font-semibold mb-4 text-gray-800">📊 Résumé des ventes</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div class="bg-green-50 p-4 rounded-lg">
+                        <p class="text-gray-600 text-sm">Produits vendus</p>
+                        <p id="sold-count" class="text-3xl font-bold text-green-700">0</p>
+                    </div>
+                    <div class="bg-blue-50 p-4 rounded-lg">
+                        <p class="text-gray-600 text-sm">Revenus totaux</p>
+                        <p id="total-revenue" class="text-3xl font-bold text-blue-700">0.00€</p>
+                    </div>
+                    <div class="bg-purple-50 p-4 rounded-lg">
+                        <p class="text-gray-600 text-sm">Bénéfice net</p>
+                        <p id="net-profit" class="text-3xl font-bold text-purple-700">0.00€</p>
                     </div>
                 </div>
             </div>
-            
-            <div onclick="navigateMobile('card-search')" class="mobile-nav-item">
-                🔍 Recherche de cartes
+
+            <div class="bg-white rounded-lg shadow-lg p-6">
+                <h2 class="text-xl font-semibold mb-4 text-gray-800">📈 Ventes par mois</h2>
+                <canvas id="salesChart" style="max-height: 400px;"></canvas>
             </div>
         </div>
     </div>
 
-    <!-- Footer fixe -->
-    <footer class="main-footer">
-        <div class="max-w-7xl mx-auto px-4 py-4">
-            <!-- Liens de navigation -->
-            <div class="footer-links">
-                <a onclick="showTab('home')" class="footer-link">🏠 Accueil</a>
-                <a onclick="showTab('add-collection')" class="footer-link">📦 Collection</a>
-                <a onclick="showTab('add-sale')" class="footer-link">💰 Vente</a>
-                <a onclick="showTab('stock-add')" class="footer-link">📊 Stock</a>
-                <a onclick="showTab('card-search')" class="footer-link">🔍 Recherche</a>
-                <a onclick="showTab('mentions-legales')" class="footer-link">⚖️ Mentions légales</a>
-            </div>
-            
-            <!-- Actions rapides -->
-            <div class="flex justify-center gap-6 items-center my-3">
-                <button onclick="exportData()" class="text-gray-600 hover:text-green-600 transition text-xl" title="Exporter">
-                    📥
-                </button>
-                <label class="text-gray-600 hover:text-blue-600 transition cursor-pointer text-xl" title="Importer">
-                    📤
-                    <input type="file" id="footer-import-file" accept=".json" class="hidden" onchange="importData(event)">
-                </label>
-                <button onclick="toggleDarkMode()" class="text-gray-600 hover:text-yellow-600 transition text-xl" title="Mode sombre" id="footer-dark-toggle">
-                    🌙
-                </button>
-            </div>
-            
-            <!-- Copyright -->
-            <div class="footer-copyright">
-                © 2025 Gardjax - Gestionnaire de Collection Pokémon TCG
-            </div>
-        </div>
-    </footer>
-
-    <!-- Script principal -->
     <script src="script.js"></script>
 </body>
 </html>
